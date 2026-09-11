@@ -1,19 +1,19 @@
 import streamlit as st
 import torch
 import torch.nn as nn
-from torchvision.models import resnet50, ResNet50_Weights
+from torchvision.models import densenet121, DenseNet121_Weights
 import torchvision.transforms as T
 import numpy as np
 
 from dataset import auto_crop, apply_clahe
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CHECKPOINT_PATH = "checkpoints/resnet50_best_model.pth"
+CHECKPOINT_PATH = "checkpoints/densenet121_stage2_denseblock3_best_qwk.pth"
 
 @st.cache_resource
 def load_model():
-    model = resnet50(weights=ResNet50_Weights.DEFAULT)
-    model.fc = nn.Linear(model.fc.in_features, 5)
+    model = densenet121(weights=DenseNet121_Weights.DEFAULT)
+    model.classifier = nn.Linear(model.classifier.in_features, 5)
 
     # Kaydedilen ağırlıkları yükle
     checkpoint = torch.load(CHECKPOINT_PATH, map_location=DEVICE, weights_only=False)

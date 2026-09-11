@@ -32,8 +32,8 @@ def generate_gradcam(model, input_tensor, target_class=None):
     """
     model.eval()
 
-    # ResNet50'nin son convolution bloğu
-    target_layers = [model.layer4[-1]]
+    # DenseNet121'in son convolution bloğu (ResNet'teki layer4[-1]'in karşılığı)
+    target_layers = [model.features.denseblock4]
 
     if target_class is None:
         with torch.inference_mode():
