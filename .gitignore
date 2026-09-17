@@ -13,6 +13,7 @@ venv/
 env/
 data/
 *.png
+!figures/*.png
 *.jpg
 *.csv
 
