@@ -17,7 +17,7 @@ A deep learning project designed to predict Diabetic Retinopathy (DR) severity g
 
 ## Dataset
 
-The [APTOS 2019 Blindness Detection](https://www.kaggle.com/c/aptos2019-blindness-detection) dataset was used, featuring retinal fundus images labeled with 5 DR grades:
+The [APTOS 2019 Blindness Detection](https://www.kaggle.com/datasets/mariaherrerot/aptos2019/data) dataset was used, featuring retinal fundus images labeled with 5 DR grades:
 
 | Stage | Class |
 |---|---|
