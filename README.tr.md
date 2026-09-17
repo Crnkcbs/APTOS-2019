@@ -17,7 +17,7 @@ Retina fundus (göz dibi) görüntülerinden diyabetik retinopati (DR) evresini 
 
 ## Veri Seti
 
-[APTOS 2019 Blindness Detection](https://www.kaggle.com/c/aptos2019-blindness-detection) veri seti kullanılmıştır — retina fundus görüntüleri, 5 sınıflı DR evrelendirmesiyle etiketlenmiştir:
+[APTOS 2019 Blindness Detection](https://www.kaggle.com/datasets/mariaherrerot/aptos2019/data) veri seti kullanılmıştır — retina fundus görüntüleri, 5 sınıflı DR evrelendirmesiyle etiketlenmiştir:
 
 | Evre | Sınıf |
 |---|---|
