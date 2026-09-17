@@ -168,7 +168,7 @@ Isı haritalarının genel olarak eksüda kümeleri, kanama bölgeleri ve optik 
 
 **`target_class` parametresi 0–4 arası elle sabitlenerek, aynı (Moderate) görüntü için her sınıfa ait ısı haritası üretilmiştir:**
 
-![Target Class Manuel Değişim](images/target_class_manual_override_png.png)
+![Target Class Manuel Değişim](images/target_class_manual_override.png)
 
 Gerçek sınıfa (target_class=2, Moderate) karşılık gelen ısı haritasının, görünür lezyon bölgesiyle en tutarlı ve en geniş odaklanmayı gösterdiği; diğer sınıflar için haritanın farklı (ve genelde daha az anlamlı) bölgelere kaydığı görülmektedir.
 

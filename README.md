@@ -134,7 +134,7 @@ Fine-tuning yielded a ~2% accuracy improvement over the baseline model on the te
 
 ![Fine-Tuning Stage 2](images/densenet121_stage2_loss_qwk.png)
 
-QWK showed a fluctuating yet upward trajectory across both stages, peaking at 0.916 (best epoch).
+QWK showed a fluctuating yet upward trajectory across both stages, climbing from 0.882 to 0.916 (best epoch).
 
 The same progressive fine-tuning strategy was also tested on **ResNet50** (`layer4` $\rightarrow$ `layer3+layer4`):
 
@@ -168,7 +168,7 @@ Heatmaps consistently highlight clinical markers such as exudate clusters, hemor
 
 **Manual override of `target_class` (0–4) for a single Moderate image across all classes:**
 
-![Target Class Manual Override](images/target_class_manual_override_png.png)
+![Target Class Manual Override](images/target_class_manual_override.png)
 
 The heatmap corresponding to the true class (`target_class=2`, Moderate) demonstrates the widest and most accurate alignment with visible lesion zones, whereas maps for other classes drift to unrelated areas.
 
