@@ -1,5 +1,7 @@
 # APTOS 2019 — Diyabetik Retinopati Evre Tespiti
 
+🔗 **Canlı Demo:** [diabetic-retinopathy-app.streamlit.app](https://diabetic-retinopathy-app.streamlit.app) 
+
 Retina fundus (göz dibi) görüntülerinden diyabetik retinopati (DR) evresini (0–4 arası, 5 sınıflı) tahmin eden bir derin öğrenme projesi. EfficientNet-B0, ResNet50 ve DenseNet121 mimarileri transfer learning ile eğitilmiş, en iyi performansı veren DenseNet121 kademeli (discriminative) fine-tuning ile daha da geliştirilmiş; Grad-CAM ile model kararlarının klinik olarak anlamlı bölgelere dayandığı doğrulanmış ve sonuçlar bir Streamlit arayüzü üzerinden sunulmuştur.
 
 ## İçindekiler
