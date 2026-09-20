@@ -110,14 +110,6 @@ TEXTS = {
 if "lang" not in st.session_state:
     st.session_state.lang = "tr"
 
-with st.sidebar:
-    selected_label = st.selectbox(
-        TEXTS[st.session_state.lang]["language_label"],
-        options=["Türkçe", "English"],
-        index=0 if st.session_state.lang == "tr" else 1
-    )
-    st.session_state.lang = "tr" if selected_label == "Türkçe" else "en"
-
 t = TEXTS[st.session_state.lang]
 
 
@@ -425,6 +417,26 @@ st.markdown(
     font-size: 12px;
 }
 
+
+/* --------------------------------------------------------------------------
+   DİL TOGGLE
+-------------------------------------------------------------------------- */
+
+.lang-toggle-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+div[data-testid="stHorizontalBlock"] div[data-testid="column"] .stButton > button {
+    width: auto;
+    height: 34px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 650;
+    border-radius: 8px;
+}
+
 </style>
 """,
     unsafe_allow_html=True
@@ -439,6 +451,30 @@ def image_to_base64(image):
     buffer = BytesIO()
     image.save(buffer, format="JPEG", quality=92)
     return base64.b64encode(buffer.getvalue()).decode()
+
+
+# ==============================================================================
+# DİL TOGGLE (SABİT, ÜSTTE)
+# ==============================================================================
+lang_col_spacer, lang_col_tr, lang_col_en = st.columns([10, 1, 1])
+
+with lang_col_tr:
+    if st.button(
+        "🇹🇷 TR",
+        use_container_width=True,
+        type="primary" if st.session_state.lang == "tr" else "secondary"
+    ):
+        st.session_state.lang = "tr"
+        st.rerun()
+
+with lang_col_en:
+    if st.button(
+        "🇬🇧 EN",
+        use_container_width=True,
+        type="primary" if st.session_state.lang == "en" else "secondary"
+    ):
+        st.session_state.lang = "en"
+        st.rerun()
 
 
 # ==============================================================================
