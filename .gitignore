@@ -18,6 +18,8 @@ data/
 *.csv
 
 # Model ağırlıklarının ve checkpoint dosyalarının GitHub'a gitmesini engellemek için
-checkpoints/
+checkpoints/*
+!checkpoints/densenet121_stage2_denseblock3_best_qwk.pth
 *.pth
+!densenet121_stage2_denseblock3_best_qwk.pth
 *.ckpt
