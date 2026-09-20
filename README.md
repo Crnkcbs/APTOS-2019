@@ -1,5 +1,7 @@
 # APTOS 2019 — Diabetic Retinopathy Staging
 
+🔗 **Live Demo:** [diabetic-retinopathy-app.streamlit.app](https://diabetic-retinopathy-app.streamlit.app)
+
 A deep learning project designed to predict Diabetic Retinopathy (DR) severity grades (0–4, 5-class classification) from retinal fundus images. EfficientNet-B0, ResNet50, and DenseNet121 architectures were trained using transfer learning. DenseNet121 achieved the best performance and was further optimized via discriminative fine-tuning. Grad-CAM was utilized to validate that model decisions align with clinically relevant anatomical features, and the complete pipeline is deployed via a Streamlit web interface.
 
 ## Table of Contents
