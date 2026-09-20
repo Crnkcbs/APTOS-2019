@@ -7,3 +7,8 @@ pandas
 numpy
 tqdm
 google-cloud-storage
+grad-cam
+opencv-python-headless
+streamlit
+matplotlib
+Pillow
