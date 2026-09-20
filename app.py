@@ -9,10 +9,123 @@ from gradcam_utils import generate_gradcam
 
 
 # ==============================================================================
+# METİNLER (TR / EN)
+# ==============================================================================
+TEXTS = {
+    "tr": {
+        "page_title": "Diyabetik Retinopati Analizi",
+        "kicker": "APTOS 2019 · Derin Öğrenme Tabanlı Analiz",
+        "hero_title": "Diyabetik Retinopati Analizi",
+        "hero_description": (
+            "Retina görüntülerinden diyabetik retinopati seviyesini analiz edin "
+            "ve modelin karar verirken odaklandığı bölgeleri Grad-CAM ile inceleyin."
+        ),
+        "upload_section_label": "Görüntü Yükleme",
+        "upload_placeholder": "Retina görüntülerinizi seçin",
+        "analyze_button": "✨ Görüntüleri Analiz Et",
+        "class_names": [
+            "DR Yok",
+            "Hafif",
+            "Orta",
+            "İleri",
+            "Proliferatif DR"
+        ],
+        "descriptions": [
+            "Normal retina bulgusu",
+            "Hafif düzey diyabetik retinopati bulguları",
+            "Orta düzey diyabetik retinopati bulguları",
+            "İleri düzey diyabetik retinopati bulguları",
+            "Proliferatif diyabetik retinopati bulguları"
+        ],
+        "original_image_title": "Orijinal Görüntü",
+        "original_image_caption": "Yüklenen retina görüntüsü",
+        "gradcam_title": "Model Attention (Grad-CAM)",
+        "gradcam_caption": "Modelin tahmin sırasında odaklandığı bölgeler",
+        "model_prediction_label": "MODEL TAHMİNİ",
+        "confidence_label": "Güven skoru",
+        "class_probabilities_title": "Sınıf Olasılıkları",
+        "disclaimer_title": "Bilgilendirme",
+        "disclaimer_text": (
+            "Bu uygulama eğitim ve araştırma amaçlıdır ve klinik tanı yerine geçmez. "
+            "Tıbbi değerlendirme ve kararlar için göz hastalıkları uzmanına danışılmalıdır."
+        ),
+        "footer": (
+            "Geliştiren ve Tasarlayan: "
+            "<b>Ceren Kocabaş &amp; Rüveyda Karakoyun</b> "
+            "• APTOS 2019 Projesi"
+        ),
+        "language_label": "Dil / Language",
+    },
+    "en": {
+        "page_title": "Diabetic Retinopathy Analysis",
+        "kicker": "APTOS 2019 · Deep Learning Based Analysis",
+        "hero_title": "Diabetic Retinopathy Analysis",
+        "hero_description": (
+            "Analyze the diabetic retinopathy stage from retina images "
+            "and inspect where the model focuses when making its decision using Grad-CAM."
+        ),
+        "upload_section_label": "Image Upload",
+        "upload_placeholder": "Select your retina images",
+        "analyze_button": "✨ Analyze Images",
+        "class_names": [
+            "No DR",
+            "Mild",
+            "Moderate",
+            "Severe",
+            "Proliferative DR"
+        ],
+        "descriptions": [
+            "Normal retina finding",
+            "Mild diabetic retinopathy findings",
+            "Moderate diabetic retinopathy findings",
+            "Severe diabetic retinopathy findings",
+            "Proliferative diabetic retinopathy findings"
+        ],
+        "original_image_title": "Original Image",
+        "original_image_caption": "Uploaded retina image",
+        "gradcam_title": "Model Attention (Grad-CAM)",
+        "gradcam_caption": "Regions the model focused on during prediction",
+        "model_prediction_label": "MODEL PREDICTION",
+        "confidence_label": "Confidence score",
+        "class_probabilities_title": "Class Probabilities",
+        "disclaimer_title": "Disclaimer",
+        "disclaimer_text": (
+            "This application is for educational and research purposes only and is not "
+            "a substitute for clinical diagnosis. Please consult an ophthalmologist for "
+            "medical evaluation and decisions."
+        ),
+        "footer": (
+            "Developed and Designed by: "
+            "<b>Ceren Kocabaş &amp; Rüveyda Karakoyun</b> "
+            "• APTOS 2019 Project"
+        ),
+        "language_label": "Dil / Language",
+    },
+}
+
+
+# ==============================================================================
+# DİL SEÇİMİ
+# ==============================================================================
+if "lang" not in st.session_state:
+    st.session_state.lang = "tr"
+
+with st.sidebar:
+    selected_label = st.selectbox(
+        TEXTS[st.session_state.lang]["language_label"],
+        options=["Türkçe", "English"],
+        index=0 if st.session_state.lang == "tr" else 1
+    )
+    st.session_state.lang = "tr" if selected_label == "Türkçe" else "en"
+
+t = TEXTS[st.session_state.lang]
+
+
+# ==============================================================================
 # SAYFA AYARLARI
 # ==============================================================================
 st.set_page_config(
-    page_title="Diyabetik Retinopati Analizi",
+    page_title=t["page_title"],
     page_icon="👁️",
     layout="wide"
 )
@@ -332,23 +445,22 @@ def image_to_base64(image):
 # ÜST ALAN
 # ==============================================================================
 st.markdown(
-    '<div class="hero">'
-        '<div class="hero-top">'
-            '<div class="hero-icon">👁️</div>'
-            '<div class="hero-heading">'
-                '<div class="hero-kicker">'
-                    'APTOS 2019 · Derin Öğrenme Tabanlı Analiz'
-                '</div>'
-                '<div class="hero-title">'
-                    'Diyabetik Retinopati Analizi'
-                '</div>'
-            '</div>'
-        '</div>'
-        '<div class="hero-description">'
-            'Retina görüntülerinden diyabetik retinopati seviyesini analiz edin '
-            've modelin karar verirken odaklandığı bölgeleri Grad-CAM ile inceleyin.'
-        '</div>'
-    '</div>',
+    f'<div class="hero">'
+        f'<div class="hero-top">'
+            f'<div class="hero-icon">👁️</div>'
+            f'<div class="hero-heading">'
+                f'<div class="hero-kicker">'
+                    f'{t["kicker"]}'
+                f'</div>'
+                f'<div class="hero-title">'
+                    f'{t["hero_title"]}'
+                f'</div>'
+            f'</div>'
+        f'</div>'
+        f'<div class="hero-description">'
+            f'{t["hero_description"]}'
+        f'</div>'
+    f'</div>',
     unsafe_allow_html=True
 )
 
@@ -368,12 +480,12 @@ model = get_model()
 # DOSYA YÜKLEME
 # ==============================================================================
 st.markdown(
-    '<div class="section-label">Görüntü Yükleme</div>',
+    f'<div class="section-label">{t["upload_section_label"]}</div>',
     unsafe_allow_html=True
 )
 
 uploaded_files = st.file_uploader(
-    "Retina görüntülerinizi seçin",
+    t["upload_placeholder"],
     type=["png", "jpg", "jpeg"],
     accept_multiple_files=True,
     label_visibility="collapsed"
@@ -386,25 +498,12 @@ uploaded_files = st.file_uploader(
 if uploaded_files:
 
     if st.button(
-        "✨ Görüntüleri Analiz Et",
+        t["analyze_button"],
         use_container_width=True
     ):
 
-        class_names = [
-            "No DR",
-            "Mild",
-            "Moderate",
-            "Severe",
-            "Proliferative DR"
-        ]
-
-        descriptions = [
-            "Normal retina bulgusu",
-            "Hafif düzey diyabetik retinopati bulguları",
-            "Orta düzey diyabetik retinopati bulguları",
-            "İleri düzey diyabetik retinopati bulguları",
-            "Proliferatif diyabetik retinopati bulguları"
-        ]
+        class_names = t["class_names"]
+        descriptions = t["descriptions"]
 
         for uploaded_file in uploaded_files:
 
@@ -458,9 +557,9 @@ if uploaded_files:
             with img_col1:
                 st.markdown(
                     f'<div class="visual-card">'
-                    f'<div class="visual-title">Orijinal Görüntü</div>'
+                    f'<div class="visual-title">{t["original_image_title"]}</div>'
                     f'<div class="visual-caption">'
-                    f'Yüklenen retina görüntüsü'
+                    f'{t["original_image_caption"]}'
                     f'</div>'
                     f'<div class="image-frame">'
                     f'<img src="data:image/jpeg;base64,{original_b64}">'
@@ -473,10 +572,10 @@ if uploaded_files:
                 st.markdown(
                     f'<div class="visual-card">'
                     f'<div class="visual-title">'
-                    f'Model Attention (Grad-CAM)'
+                    f'{t["gradcam_title"]}'
                     f'</div>'
                     f'<div class="visual-caption">'
-                    f'Modelin tahmin sırasında odaklandığı bölgeler'
+                    f'{t["gradcam_caption"]}'
                     f'</div>'
                     f'<div class="image-frame">'
                     f'<img src="data:image/jpeg;base64,{cam_b64}">'
@@ -531,13 +630,13 @@ if uploaded_files:
                 st.markdown(
                     f'<div class="result-card">'
                     f'<div class="result-label">'
-                    f'MODEL TAHMİNİ'
+                    f'{t["model_prediction_label"]}'
                     f'</div>'
                     f'<div class="result-class">'
                     f'{class_names[predicted_class]}'
                     f'</div>'
                     f'<div class="confidence-label">'
-                    f'Güven skoru'
+                    f'{t["confidence_label"]}'
                     f'</div>'
                     f'<div class="confidence-value">'
                     f'%{confidence:.1f}'
@@ -553,7 +652,7 @@ if uploaded_files:
                 st.markdown(
                     f'<div class="prob-card">'
                     f'<div class="prob-title">'
-                    f'Sınıf Olasılıkları'
+                    f'{t["class_probabilities_title"]}'
                     f'</div>'
                     f'{probability_html}'
                     f'</div>',
@@ -565,11 +664,10 @@ if uploaded_files:
 # BİLGİLENDİRME
 # ==============================================================================
 st.markdown(
-    '<div class="disclaimer">'
-    '<b>Bilgilendirme</b><br>'
-    'Bu uygulama eğitim ve araştırma amaçlıdır ve klinik tanı yerine geçmez. '
-    'Tıbbi değerlendirme ve kararlar için göz hastalıkları uzmanına danışılmalıdır.'
-    '</div>',
+    f'<div class="disclaimer">'
+    f'<b>{t["disclaimer_title"]}</b><br>'
+    f'{t["disclaimer_text"]}'
+    f'</div>',
     unsafe_allow_html=True
 )
 
@@ -578,10 +676,8 @@ st.markdown(
 # FOOTER
 # ==============================================================================
 st.markdown(
-    '<div class="footer">'
-    'Geliştiren ve Tasarlayan: '
-    '<b>Ceren Kocabaş & Rüveyda Karakoyun</b> '
-    '• APTOS 2019 Projesi'
-    '</div>',
+    f'<div class="footer">'
+    f'{t["footer"]}'
+    f'</div>',
     unsafe_allow_html=True
 )
